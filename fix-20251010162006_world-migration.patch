@@ -1,0 +1,13 @@
+diff --git a/sql/migrations/20251010162006_world.sql b/sql/migrations/20251010162006_world.sql
+index 31de04690..e209db5bd 100644
+--- a/sql/migrations/20251010162006_world.sql
++++ b/sql/migrations/20251010162006_world.sql
+@@ -8,6 +8,8 @@ IF v = 0 THEN
+ INSERT INTO `migrations` VALUES ('20251010162006');
+ -- Add your query below.
+ 
++-- Set Subway gameobject data5 to 0 temporarily to avoid issues during conversion.
++UPDATE `gameobject_template` SET `data5`=0 WHERE `entry`=176084;
+ 
+ -- All gameobject data fields should be signed.
+ ALTER TABLE `gameobject_template`
