@@ -1,4 +1,0 @@
-diff --git a/sql/migrations/20251103125545_world.sql b/sql/migrations/20251103132426_world.sql
-similarity index 100%
-rename from sql/migrations/20251103125545_world.sql
-rename to sql/migrations/20251103132426_world.sql
