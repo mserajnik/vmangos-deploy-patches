@@ -3,9 +3,13 @@
 This repository contains patches for [VMaNGOS][vmangos] that are applied when
 building the Docker images for [vmangos-deploy][vmangos-deploy].
 
-These patches provide temporary workarounds for bugs and issues before they
-are fixed upstream. The patches are strictly for correcting problems that would
-cause build failures or result in a faulty database state if not addressed.
+The patches are strictly for:
+
++ Correcting problems that would cause build failures, runtime crashes, or
+  database corruption
++ Making Docker-specific adjustments that would not be appropriate to include
+  upstream
+
 At no point will a patch be added that changes the behavior of the server or
 otherwise alters its functionality.
 
