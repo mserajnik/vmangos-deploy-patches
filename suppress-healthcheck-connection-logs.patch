@@ -1,8 +1,8 @@
-diff --git a/src/game/Protocol/WorldSocket.cpp b/src/game/Protocol/WorldSocket.cpp
-index dfc5e46ec..067aa1cb6 100644
---- a/src/game/Protocol/WorldSocket.cpp
-+++ b/src/game/Protocol/WorldSocket.cpp
-@@ -82,7 +82,8 @@ WorldSocket::WorldSocket(IO::Networking::AsyncSocket socket)
+diff --git a/src/game/Server/WorldSocket.cpp b/src/game/Server/WorldSocket.cpp
+index ca250a9d9..9f940bef9 100644
+--- a/src/game/Server/WorldSocket.cpp
++++ b/src/game/Server/WorldSocket.cpp
+@@ -83,7 +83,8 @@ WorldSocket::WorldSocket(IO::Networking::AsyncSocket socket)
  WorldSocket::~WorldSocket()
  {
      CloseSocket();
@@ -12,11 +12,11 @@ index dfc5e46ec..067aa1cb6 100644
  
      if (m_sessionNoAuthTimeout)
      {
-diff --git a/src/game/Protocol/WorldSocketMgr.cpp b/src/game/Protocol/WorldSocketMgr.cpp
-index 46c728f2d..136bf9b77 100644
---- a/src/game/Protocol/WorldSocketMgr.cpp
-+++ b/src/game/Protocol/WorldSocketMgr.cpp
-@@ -116,7 +116,8 @@ void WorldSocketMgr::OnNewClientConnected(IO::Networking::SocketDescriptor socke
+diff --git a/src/game/Server/WorldSocketMgr.cpp b/src/game/Server/WorldSocketMgr.cpp
+index 3f49b768d..47c6e93a4 100644
+--- a/src/game/Server/WorldSocketMgr.cpp
++++ b/src/game/Server/WorldSocketMgr.cpp
+@@ -110,7 +110,8 @@ void WorldSocketMgr::OnNewClientConnected(IO::Networking::SocketDescriptor socke
      else
      {
          // no proxy, we can start directly
@@ -27,7 +27,7 @@ index 46c728f2d..136bf9b77 100644
      }
  }
 diff --git a/src/realmd/AuthSocket.cpp b/src/realmd/AuthSocket.cpp
-index e8bceb491..2814d345c 100644
+index 5e64ee223..2afb10cfb 100644
 --- a/src/realmd/AuthSocket.cpp
 +++ b/src/realmd/AuthSocket.cpp
 @@ -89,7 +89,8 @@ AuthSocket::~AuthSocket()
@@ -41,10 +41,10 @@ index e8bceb491..2814d345c 100644
  
  AccountTypes AuthSocket::GetSecurityOn(uint32 realmId) const
 diff --git a/src/realmd/Main.cpp b/src/realmd/Main.cpp
-index d0591b528..64dca927a 100644
+index 739c5df28..065409dde 100644
 --- a/src/realmd/Main.cpp
 +++ b/src/realmd/Main.cpp
-@@ -269,7 +269,8 @@ extern int main(int argc, char** argv)
+@@ -270,7 +270,8 @@ extern int main(int argc, char** argv)
          else
          {
              // no proxy, we can start directly
@@ -55,7 +55,7 @@ index d0591b528..64dca927a 100644
          }
      });
 diff --git a/src/shared/IO/Networking/AsyncSocket_posix.cpp b/src/shared/IO/Networking/AsyncSocket_posix.cpp
-index 852defd85..7969c822a 100644
+index 9b9e250b0..b7b26da00 100644
 --- a/src/shared/IO/Networking/AsyncSocket_posix.cpp
 +++ b/src/shared/IO/Networking/AsyncSocket_posix.cpp
 @@ -510,11 +510,13 @@ void IO::Networking::AsyncSocket::OnIoEvent(uint32_t event)
