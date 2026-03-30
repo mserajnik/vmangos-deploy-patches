@@ -1,0 +1,45 @@
+From 7f4a83ba99ec762b9c9c0f1d7d612f535a74fe51 Mon Sep 17 00:00:00 2001
+From: Michael Serajnik <m@mser.at>
+Date: Mon, 30 Mar 2026 09:19:35 +0200
+Subject: [PATCH] Fix 1.5.1 build.
+
+---
+ src/game/Handlers/MiscHandler.cpp | 2 ++
+ src/game/Server/Packets/Misc.cpp  | 3 ++-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/src/game/Handlers/MiscHandler.cpp b/src/game/Handlers/MiscHandler.cpp
+index 18e7e3aed39..f2fabb0720b 100644
+--- a/src/game/Handlers/MiscHandler.cpp
++++ b/src/game/Handlers/MiscHandler.cpp
+@@ -1190,6 +1190,7 @@ void WorldSession::HandleRequestPetInfoOpcode(NullClientPacket const& /*packet *
+         _player->CharmSpellInitialize();
+ }
+ 
++#if SUPPORTED_CLIENT_BUILD > CLIENT_BUILD_1_5_1
+ void WorldSession::HandleWardenDataOpcode(WorldPackets::Misc::WardenData const& packet)
+ {
+     if (!m_warden)
+@@ -1204,3 +1205,4 @@ void WorldSession::HandleWardenDataOpcode(WorldPackets::Misc::WardenData const&
+         m_warden->m_packetDataQueue.emplace(packet.data);
+     }
+ }
++#endif
+diff --git a/src/game/Server/Packets/Misc.cpp b/src/game/Server/Packets/Misc.cpp
+index 61e76c597e4..e87d4624ce4 100644
+--- a/src/game/Server/Packets/Misc.cpp
++++ b/src/game/Server/Packets/Misc.cpp
+@@ -235,7 +235,7 @@ void WorldPackets::Misc::Bug::ReadFromWorldPacket(WorldPacket& recv_data)
+     recv_data >> type;
+ }
+ 
+-
++#if SUPPORTED_CLIENT_BUILD > CLIENT_BUILD_1_5_1
+ void WorldPackets::Misc::WardenData::ReadFromWorldPacket(WorldPacket& recv_data)
+ {
+     uint32 const remaining = recv_data.size() - recv_data.rpos();
+@@ -243,3 +243,4 @@ void WorldPackets::Misc::WardenData::ReadFromWorldPacket(WorldPacket& recv_data)
+     if (!data.empty())
+         recv_data.read(data.data(), data.size());
+ }
++#endif
