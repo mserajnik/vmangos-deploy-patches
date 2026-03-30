@@ -1,0 +1,34 @@
+From 6acc6c292881c2f62acdc1a2b38071a2115f8a73 Mon Sep 17 00:00:00 2001
+From: Michael Serajnik <m@mser.at>
+Date: Mon, 30 Mar 2026 14:51:25 +0200
+Subject: [PATCH] Fix 1.9.4 build.
+
+---
+ src/game/Handlers/MovementHandler.cpp | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/src/game/Handlers/MovementHandler.cpp b/src/game/Handlers/MovementHandler.cpp
+index d84770ac6b2..65db5ac24b1 100644
+--- a/src/game/Handlers/MovementHandler.cpp
++++ b/src/game/Handlers/MovementHandler.cpp
+@@ -371,15 +371,15 @@ void WorldSession::HandleMovementOpcodes(WorldPackets::Movement::MovementPacket
+ #if SUPPORTED_CLIENT_BUILD == CLIENT_BUILD_1_9_4
+     if (opcode == MSG_MOVE_FALL_LAND)
+     {
+-        if (!movementInfo.HasMovementFlag(MOVEFLAG_MASK_MOVING))
++        if (!packet.movementInfo.HasMovementFlag(MOVEFLAG_MASK_MOVING))
+             opcode = MSG_MOVE_STOP;
+-        else if (movementInfo.HasMovementFlag(MOVEFLAG_BACKWARD))
++        else if (packet.movementInfo.HasMovementFlag(MOVEFLAG_BACKWARD))
+             opcode = MSG_MOVE_START_BACKWARD;
+-        else if (movementInfo.HasMovementFlag(MOVEFLAG_FORWARD))
++        else if (packet.movementInfo.HasMovementFlag(MOVEFLAG_FORWARD))
+             opcode = MSG_MOVE_START_FORWARD;
+-        else if (movementInfo.HasMovementFlag(MOVEFLAG_STRAFE_LEFT))
++        else if (packet.movementInfo.HasMovementFlag(MOVEFLAG_STRAFE_LEFT))
+             opcode = MSG_MOVE_START_STRAFE_LEFT;
+-        else if (movementInfo.HasMovementFlag(MOVEFLAG_STRAFE_RIGHT))
++        else if (packet.movementInfo.HasMovementFlag(MOVEFLAG_STRAFE_RIGHT))
+             opcode = MSG_MOVE_START_STRAFE_RIGHT;
+         else
+             opcode = MSG_MOVE_HEARTBEAT;
